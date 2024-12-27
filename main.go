@@ -1,44 +1,45 @@
 package main
 
 import (
+	"fmt"
+	"github.com/amarnathcjd/gogram/telegram"
 	"log"
-	"os"
-	"time"
-
-	"github.com/PaulSonOfLars/gotgbot/v2"
-	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 )
 
 func main() {
-	token := os.Getenv("TOKEN")
-	if token == "" {
-		token = "111:3333kkkk"
+	var (
+		apiID   int32
+		apiHash string
+	)
+	fmt.Print("Enter an API ID: ")
+	if _, err := fmt.Scan(&apiID); err != nil {
+		log.Fatalf(err.Error())
 	}
-	b, err := gotgbot.NewBot(token, nil)
-	if err != nil {
-		log.Fatalln(err.Error())
+	fmt.Print("Enter an API HASH: ")
+	if _, err := fmt.Scan(&apiHash); err != nil {
+		log.Fatalf(err.Error())
 	}
-	dispatcher := ext.NewDispatcher(&ext.DispatcherOpts{
-		Error: func(b *gotgbot.Bot, ctx *ext.Context, err error) ext.DispatcherAction {
-			log.Println("an error occurred while handling update:", err.Error())
-			return ext.DispatcherActionNoop
-		},
-		MaxRoutines: -1,
+	ubot, err := telegram.NewClient(telegram.ClientConfig{
+		AppID:         apiID,
+		AppHash:       apiHash,
+		LogLevel:      telegram.LogWarn,
+		NoUpdates:     true,
+		DisableCache:  true,
+		MemorySession: true,
 	})
-	updater := ext.NewUpdater(dispatcher, nil)
-	if err = updater.StartPolling(b, &ext.PollingOpts{
-		DropPendingUpdates:    false,
-		EnableWebhookDeletion: true,
-		GetUpdatesOpts: &gotgbot.GetUpdatesOpts{
-			AllowedUpdates: []string{"message"},
-			Timeout:        5,
-			RequestOpts: &gotgbot.RequestOpts{
-				Timeout: time.Second * 5,
-			},
-		},
-	}); err != nil {
-		log.Fatalln(err.Error())
+	ubot.Log.NoColor()
+	if err != nil {
+		log.Fatal(err.Error())
 	}
-	log.Println(b.User.FirstName, " has been started!")
-	updater.Idle()
+	if err = ubot.Start(); err != nil {
+		log.Fatal(err.Error())
+	}
+	me, err := ubot.GetMe()
+	if err != nil {
+		log.Println(err.Error())
+	}
+	log.Println(me.FirstName, "has been started!")
+	fmt.Println(ubot.ExportSession())
+	_ = ubot.Stop()
+	log.Println("Bye!")
 }
