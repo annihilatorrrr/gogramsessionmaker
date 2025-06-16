@@ -1,5 +1,5 @@
-github.com/amarnathcjd/gogram v1.6.0 h1:IiFBCxRlxRN8krTc0uy5Fc9gRHzojOaThgk1bay19Lo=
-github.com/amarnathcjd/gogram v1.6.0/go.mod h1:7Ns4qq3IQ5C2j0h4OmkDOzAkVh01bwUEdsfQ0tdRvMU=
+github.com/amarnathcjd/gogram v1.6.1-0.20250614171458-d235e2f98b62 h1:iG8Znr+DFtBOOZ4oKT2pKEszoorSrlLfvYavZC/a7s4=
+github.com/amarnathcjd/gogram v1.6.1-0.20250614171458-d235e2f98b62/go.mod h1:6XqpNfIQ9yJviJMyw825yx1QsfPwhv34/JbSdEuk7A0=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 golang.org/x/net v0.41.0 h1:vBTly1HeNPEn3wtREYfy4GZ/NECgw2Cnl+nK6Nz3uvw=

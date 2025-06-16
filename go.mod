@@ -1,10 +1,8 @@
 module gogramsessionmaker
 
-go 1.23.4
+go 1.24.4
 
-toolchain go1.24.1
-
-require github.com/amarnathcjd/gogram v1.6.0
+require github.com/amarnathcjd/gogram v1.6.1-0.20250614171458-d235e2f98b62
 
 require (
 	github.com/pkg/errors v0.9.1 // indirect
