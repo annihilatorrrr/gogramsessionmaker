@@ -31,14 +31,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	if err = ubot.Start(); err != nil {
-		log.Fatal(err.Error())
-	}
-	me, err := ubot.GetMe()
-	if err != nil {
-		log.Println(err.Error())
-	}
-	log.Println(me.FirstName, "has been started!")
+	log.Println(ubot.Me().FirstName, "has been started!")
 	fmt.Println(ubot.ExportSession())
 	_ = ubot.Stop()
 	log.Println("Bye!")
