@@ -27,7 +27,7 @@ func main() {
 		DisableCache:  true,
 		MemorySession: true,
 	})
-	ubot.Log.NoColor()
+	ubot.Log.SetColor(false)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
